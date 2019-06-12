@@ -1,7 +1,7 @@
 # --------------------------------------------------------
-# Tensorflow Faster R-CNN
+# Pytorch Multi-GPU Faster R-CNN
 # Licensed under The MIT License [see LICENSE for details]
-# Written by Jiasen Lu, Jianwei Yang, based on code from Ross Girshick
+# Written by Lichao Wang, based on code from Ross Girshick, Jiasen Lu, Jianwei Yang
 # --------------------------------------------------------
 from __future__ import absolute_import
 from __future__ import division
@@ -32,7 +32,7 @@ from model.utils.net_utils import save_net, load_net, vis_detections
 from model.faster_rcnn.vgg16 import vgg16
 from model.faster_rcnn.resnet import resnet
 
-import pdb
+# import pdb
 
 try:
     xrange          # Python 2
