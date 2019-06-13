@@ -9,10 +9,7 @@ import numpy as np
 from model.utils.config import cfg
 from model.rpn.rpn import _RPN
 
-from model.roi_layers import ROIAlign, ROIPool
-
-# from model.roi_pooling.modules.roi_pool import _RoIPooling
-# from model.roi_align.modules.roi_align import RoIAlignAvg
+from torchvision.ops import RoIAlign, RoIPool
 
 from model.rpn.proposal_target_layer_cascade import _ProposalTargetLayer
 import time
@@ -37,9 +34,17 @@ class _fasterRCNN(nn.Module):
         # self.RCNN_roi_pool = _RoIPooling(cfg.POOLING_SIZE, cfg.POOLING_SIZE, 1.0/16.0)
         # self.RCNN_roi_align = RoIAlignAvg(cfg.POOLING_SIZE, cfg.POOLING_SIZE, 1.0/16.0)
 
-        self.RCNN_roi_pool = ROIPool((cfg.POOLING_SIZE, cfg.POOLING_SIZE), 1.0/16.0)
-        self.RCNN_roi_align = ROIAlign((cfg.POOLING_SIZE, cfg.POOLING_SIZE), 1.0/16.0, 0)
+        # self.RCNN_roi_pool = ROIPool((cfg.POOLING_SIZE, cfg.POOLING_SIZE), 1.0/16.0)
+        # self.RCNN_roi_align = ROIAlign((cfg.POOLING_SIZE, cfg.POOLING_SIZE), 1.0/16.0, 0)
 
+    def _roi_pool_layer(self, bottom, rois):
+        return RoIPool((cfg.POOLING_SIZE, cfg.POOLING_SIZE), 1.0 / 16.0)(bottom, rois)
+
+
+    def _roi_align_layer(self, bottom, rois):
+        return RoIAlign((cfg.POOLING_SIZE, cfg.POOLING_SIZE), 1.0 / 16.0, 0)(bottom, rois)
+    
+    
     def forward(self, im_data, im_info, gt_boxes, num_boxes):
         batch_size = im_data.size(0)
 
@@ -74,9 +79,11 @@ class _fasterRCNN(nn.Module):
         # do roi pooling based on predicted rois
 
         if cfg.POOLING_MODE == 'align':
-            pooled_feat = self.RCNN_roi_align(base_feat, rois.view(-1, 5))
+            # pooled_feat = self.RCNN_roi_align(base_feat, rois.view(-1, 5))
+            pooled_feat = self._roi_align_layer(base_feat, rois.view(-1, 5))
         elif cfg.POOLING_MODE == 'pool':
-            pooled_feat = self.RCNN_roi_pool(base_feat, rois.view(-1,5))
+            # pooled_feat = self.RCNN_roi_pool(base_feat, rois.view(-1, 5))
+            pooled_feat = self._roi_pool_layer(base_feat, rois.view(-1, 5))
 
         # feed pooled features to top model
         pooled_feat = self._head_to_tail(pooled_feat)
