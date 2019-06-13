@@ -12,12 +12,14 @@
 First of all, clone the code
 ```
 git clone https://github.com/leowangzi/FasterRCNN.git
+cd FasterRCNN
 ```
 Then, create a folder:
 ```
-cd FasterRCNN
 mkdir data
+```
 or
+```
 ln -s [source_data] data
 ```
 
