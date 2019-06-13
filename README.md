@@ -12,4 +12,4 @@
 ### What we are doing and going to do
 
 - [x] Support pytorch-1.1 (master).
-- Support torchvision-0.3 (master).
+- [x] Support torchvision-0.3 (master).
