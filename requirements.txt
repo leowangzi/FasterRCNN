@@ -100,7 +100,6 @@ openslide-python==1.1.1
 packaging==19.0
 pandas==0.24.2
 pandocfilters==1.4.2
-parso==0.3.4
 partd==0.3.10
 path.py==11.5.0
 pathlib2==2.3.3
