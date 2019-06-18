@@ -227,10 +227,6 @@ if __name__ == '__main__':
   for i in range(num_images):
 
       data = next(data_iter)
-      # im_data.data.resize_(data[0].size()).copy_(data[0])
-      # im_info.data.resize_(data[1].size()).copy_(data[1])
-      # gt_boxes.data.resize_(data[2].size()).copy_(data[2])
-      # num_boxes.data.resize_(data[3].size()).copy_(data[3])
       with torch.no_grad():
         im_data.resize_(data[0].size()).copy_(data[0])
         im_info.resize_(data[1].size()).copy_(data[1])
@@ -238,10 +234,11 @@ if __name__ == '__main__':
         num_boxes.resize_(data[3].size()).copy_(data[3])
 
       det_tic = time.time()
-      rois, cls_prob, bbox_pred, \
-      rpn_loss_cls, rpn_loss_box, \
-      RCNN_loss_cls, RCNN_loss_bbox, \
-      rois_label = fasterRCNN(im_data, im_info, gt_boxes, num_boxes)
+      with torch.no_grad():
+        rois, cls_prob, bbox_pred, \
+        rpn_loss_cls, rpn_loss_box, \
+        RCNN_loss_cls, RCNN_loss_bbox, \
+        rois_label = fasterRCNN(im_data, im_info, gt_boxes, num_boxes)
 
       scores = cls_prob.data
       boxes = rois.data[:, :, 1:5]
