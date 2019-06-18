@@ -1,4 +1,7 @@
 # FasterRCNN
+
+### Renferences
+
   - https://github.com/jwyang/faster-rcnn.pytorch/tree/pytorch-1.0
   - https://github.com/ruotianluo/pytorch-faster-rcnn
 
@@ -28,7 +31,7 @@ ln -s [source_data] data
 - [x] Support pytorch-1.1 (master).
 - [x] Support torchvision-0.3 (master).
 
-## Benchmarking
+### Benchmarking
 
 We benchmark our code thoroughly on pascal voc datasets, using resnet101 network architecture. Below are the results:
 
@@ -36,7 +39,7 @@ We benchmark our code thoroughly on pascal voc datasets, using resnet101 network
 
 model    | #GPUs | batch size | lr        | lr_decay | max_epoch     |  time/epoch | mem/GPU | mAP
 ---------|--------|-----|--------|-----|-----|-------|--------|-----
-[Res-101]   | 1 | 1 | 1e-3 | 5   | 7   |  0.88 hr | 3200 MB  | 74.83
+[Res-101]   | 1 | 1 | 1e-3 | 5   | 7   |  0.88 hr | 3200 MB  | 75.06
 
 2). PASCAL VOC 2007&2012 (Train/Test: 07+12trainval/07test, scale=600, ROI Align)
 
