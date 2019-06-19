@@ -1,6 +1,7 @@
 data/*
 models/*
 output/*
+logs/*
 
 *.pyc
 */*.pyc
