@@ -39,10 +39,10 @@ We benchmark our code thoroughly on pascal voc datasets, using resnet101 network
 
 model    | #GPUs | batch size | lr        | lr_decay | max_epoch     |  time/epoch | mem/GPU | mAP
 ---------|--------|-----|--------|-----|-----|-------|--------|-----
-[Res-101]   | 1 | 1 | 1e-3 | 5   | 7   |  0.88 hr | 3200 MB  | 75.06
+[Res-101]   | 1 | 1 | 1e-3 | 5   | 10   |  0.88 hr | 3200 MB  | 75.06
 
 2). PASCAL VOC 2007&2012 (Train/Test: 07+12trainval/07test, scale=600, ROI Align)
 
 model    | #GPUs | batch size | lr        | lr_decay | max_epoch     |  time/epoch | mem/GPU | mAP
 ---------|--------|-----|--------|-----|-----|-------|--------|-----
-[Res-101]   | 1 | 1 | 1e-3 | 5   | 7   |  0.88 hr | 3200 MB  | 79.80
+[Res-101]   | 1 | 1 | 1e-3 | 5   | 10   |  0.88 hr | 3200 MB  | 79.80
