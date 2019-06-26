@@ -9,7 +9,7 @@
 
 - Python 2.7 or 3.6
 - Pytorch 1.1 or higher
-- CUDA 8.0 or higher
+- CUDA 9.0 or higher
 - tensorboardX
 
 First of all, clone the code
