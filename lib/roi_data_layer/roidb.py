@@ -21,8 +21,10 @@ def prepare_roidb(imdb):
 
     roidb = imdb.roidb
     if not (imdb.name.startswith('coco')):
-        sizes = [PIL.Image.open(imdb.image_path_at(i)).size
-                 for i in range(imdb.num_images)]
+        sizes = [
+            PIL.Image.open(imdb.image_path_at(i)).size
+            for i in range(imdb.num_images)
+        ]
 
     for i in range(len(imdb.image_index)):
         roidb[i]['img_id'] = imdb.image_id_at(i)
@@ -101,6 +103,11 @@ def combined_roidb(imdb_names, training=True):
         if cfg.TRAIN.USE_FLIPPED:
             print('Appending horizontally-flipped training examples...')
             imdb.append_flipped_images()
+            print('done')
+
+        if cfg.TRAIN.USE_VER_FLIPPED:
+            print('Appending vertically-flipped training examples...')
+            imdb.append_vertical_flipped_images()
             print('done')
 
         print('Preparing training data...')
